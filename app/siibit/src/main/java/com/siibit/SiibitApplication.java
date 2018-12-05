@@ -1,12 +1,12 @@
-package com.example.demo;
+package com.siibit;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SistemInformasiIuranBemApplication {
+public class SiibitApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SistemInformasiIuranBemApplication.class, args);
+		SpringApplication.run(SiibitApplication.class, args);
 	}
 }
