@@ -1,17 +1,18 @@
 package com.example.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Mahasiswa {
 
 	@Id
+	@GeneratedValue
 	private String nim;
 	
 	@Column(name="nama_mahasiswa")
 	private String nama;
+
+	private String status;
 	
 	private Long iuran;
 	
@@ -33,6 +34,12 @@ public class Mahasiswa {
 	public void setIuran(Long iuran) {
 		this.iuran = iuran;
 	}
-	
-	
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 }

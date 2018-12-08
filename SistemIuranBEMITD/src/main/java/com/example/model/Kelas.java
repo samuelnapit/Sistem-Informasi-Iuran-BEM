@@ -1,13 +1,12 @@
 package com.example.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Kelas {
 
     @Id
+    @GeneratedValue
     @Column(name="nama_kelas")
     private String kode;
 
