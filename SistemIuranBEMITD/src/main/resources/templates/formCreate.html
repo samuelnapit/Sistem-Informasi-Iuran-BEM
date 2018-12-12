@@ -12,20 +12,17 @@
     <title>Sistem Iuran BEM</title>
 
     <!-- Bootstrap core CSS-->
-    <link th:href="@{csss/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
-    <link th:href="@{vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/csss/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
 
     <!-- Custom fonts for this template-->
-    <link th:href="@{vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
 
     <!-- Page level plugin CSS-->
-    <link th:href="@{vendor/datatables/dataTables.bootstrap4.css}" rel="stylesheet">
+    <link th:href="@{/vendor/datatables/dataTables.bootstrap4.css}" rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link th:href="@{css/sb-admin.css}" rel="stylesheet">
-
-    <link th:href="@{css/style.css}" rel="stylesheet">
-    <script type="text/javascript" th:src="@{js/scripts.js}"></script>
+    <link th:href="@{/css/sb-admin.css}" rel="stylesheet">
 
 </head>
 
@@ -33,7 +30,7 @@
 
 <nav class="navbar navbar-expand navbar-white bg-white static-top">
 
-    <a class="navbar-brand mr-1" th:href="@{index}"style="color: deepskyblue">
+    <a class="navbar-brand mr-1" th:href="@{/index}"style="color: deepskyblue">
         <img th:src="@{/download.png}" width="75px">
         Sistem Iuran Badan Eksekutif Mahasiswa
     </a>
@@ -87,7 +84,7 @@
     <!-- Sidebar -->
     <ul class="sidebar navbar-nav" style="background: white">
         <li class="nav-item active">
-            <a class="nav-link" th:href="@{index}" style="color: deepskyblue">
+            <a class="nav-link" th:href="@{/index}" style="color: deepskyblue">
                 <i class="fas fa-fw fa-tachometer-alt" style="color: deepskyblue"></i>
                 <span>Dashboard</span>
             </a>
@@ -115,44 +112,53 @@
             <li class="breadcrumb-item" style="background: #f5f5f5">
                 <a th:href="@{/index}" style="color: deepskyblue" class="fas fa-home">   Home</a>
             </li>
-            <li class="breadcrumb-item active">Dashboard</li>
+            <li class="breadcrumb-item">
+                <a th:href="@{/data}" style="color:deepskyblue">Data</a>
+            </li>
+            <li class="breadcrumb-item active">Create</li>
         </ol>
         <hr>
         <div class="container-fluid">
-
-            <section class="content" id="main-content">
-                <div class="row">
-                    <div id="left-block" class="col-12 col-sm-6 col-md-8">
-                        <div id="box box-solid" class="box-body">
-                            <div class="row">
-                                <h4 style="color: gray"><div id="clockDisplay" class="container"></div></h4>
-                            </div>
-                            <div class="row">
-                                <div>
-
-
-                                </div>
-                            </div>
-                        </div>
+            <h4>Tambah Mahasiswa</h4>
+            <br>
+            <form>
+                <div class="form-group row">
+                    <label for="inputNim" class="col-sm-2 col-form-label">NIM</label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" id="inputNim">
                     </div>
-                    <div id="right-block" class="col-6 col-md-4">
-                        <div class="box box solid">
-                            <div id="right-block-body" class="box-body">
-                                <div class="row">
-                                    <div id="pengumuman-block" class="col-sm-12">
-                                        <h3 class="box-title" style="color: gray;">Pengumuman</h3>
-                                    </div>
-                                    <p></p>
-                                </div>
-                            </div>
-                        </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputNama" class="col-sm-2 col-form-label">Nama Mahasiswa</label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" id="inputNama">
                     </div>
-            </section>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="inputJk" id="inputJk01" value="option1" checked>
+                    <label class="form-check-label" for="inputJk01">
+                        Laki-Laki
+                    </label>
+                    <input class="form-check-input" type="radio" name="inputJk" id="inputJk02" value="option2">
+                    <label class="form-check-label" for="inputJk02">
+                        Perempuan
+                    </label>
+                </div>
+                <div class="form-group row">
+                    <label for="inputStatus" class="col-sm-2 col-form-label">Status Pembayaran</label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" id="inputStatus">
+                    </div>
+                </div>
+            </form>
+            <div>
+                <a class="btn btn-info" style="background: deepskyblue">Save</a>
+            </div>
         </div>
     </div>
 </div>
 
-    <!--Main-->
+<!--Main-->
 <footer class="sticky-footer" style="background: #f5f5f5">
     <div class="container my-auto">
         <div class="copyright text-center my-auto">
@@ -162,7 +168,7 @@
 </footer>
 
 
-            <!-- Logout Modal-->
+<!-- Logout Modal-->
 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -182,25 +188,25 @@
 </div>
 
 <!-- Bootstrap core JavaScript-->
-<script th:src="@{vendor/jquery/jquery.min.js}"></script>
-<script th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
-<script th:src="@{jss/bootstrap.bundle.js}"></script>
-<script th:src="@{jss/bootstrap.js}"></script>
+<script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/jss/bootstrap.bundle.js}"></script>
+<script th:src="@{/jss/bootstrap.js}"></script>
 
 <!-- Core plugin JavaScript-->
-<script th:src="@{vendor/jquery-easing/jquery.easing.min.js}"></script>
+<script th:src="@{/vendor/jquery-easing/jquery.easing.min.js}"></script>
 
 <!-- Page level plugin JavaScript-->
-<script th:src="@{vendor/chart.js/Chart.min.js}"></script>
-<script th:src="@{vendor/datatables/jquery.dataTables.js}"></script>
-<script th:src="@{vendor/datatables/dataTables.bootstrap4.js}"></script>
+<script th:src="@{/vendor/chart.js/Chart.min.js}"></script>
+<script th:src="@{/vendor/datatables/jquery.dataTables.js}"></script>
+<script th:src="@{/vendor/datatables/dataTables.bootstrap4.js}"></script>
 
 <!-- Custom scripts for all pages-->
-<script th:src="@{js/sb-admin.min.js}"></script>
+<script th:src="@{/js/sb-admin.min.js}"></script>
 
 <!-- Demo scripts for this page-->
-<script th:src="@{js/demo/datatables-demo.js}"></script>
-<script th:src="@{js/demo/chart-area-demo.js}"></script>
+<script th:src="@{/js/demo/datatables-demo.js}"></script>
+<script th:src="@{/js/demo/chart-area-demo.js}"></script>
 
 </body>
 

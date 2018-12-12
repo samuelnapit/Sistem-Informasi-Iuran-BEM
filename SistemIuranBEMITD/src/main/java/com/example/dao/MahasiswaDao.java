@@ -1,6 +1,6 @@
 package com.example.dao;
 
-import com.example.com.example.services.*;
+import com.example.services.*;
 import com.example.model.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
@@ -22,5 +22,22 @@ public class MahasiswaDao implements MahasiswaService {
     public List<Mahasiswa> listMahasiswa() {
         EntityManager em = emf.createEntityManager();
         return em.createQuery("from Mahasiswa", Mahasiswa.class).getResultList();
+    }
+
+    @Override
+    public Mahasiswa saveOrUpdate(Mahasiswa mahasiswa) {
+
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        Mahasiswa saved = em.merge(mahasiswa);
+        em.getTransaction().commit();
+        return saved;
+    }
+
+    @Override
+    public Mahasiswa getNim(String nim){
+
+        EntityManager em = emf.createEntityManager();
+        return em.find(Mahasiswa.class, nim);
     }
 }

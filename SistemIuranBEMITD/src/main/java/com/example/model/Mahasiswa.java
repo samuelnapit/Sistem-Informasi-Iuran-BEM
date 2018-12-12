@@ -12,10 +12,12 @@ public class Mahasiswa {
 	@Column(name="nama_mahasiswa")
 	private String nama;
 
+	private String jenis_kelamin;
+
 	private String status;
 	
 	private Long iuran;
-	
+
 	public String getNim() {
 		return nim;
 	}
@@ -41,5 +43,13 @@ public class Mahasiswa {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public String getJenis_kelamin() {
+		return jenis_kelamin;
+	}
+
+	public void setJenis_kelamin(String jenis_kelamin) {
+		this.jenis_kelamin = jenis_kelamin;
 	}
 }

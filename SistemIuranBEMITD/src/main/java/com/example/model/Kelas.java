@@ -2,8 +2,8 @@ package com.example.model;
 
 import javax.persistence.*;
 
-@Entity
-public class Kelas {
+	@Entity
+	public class Kelas {
 
     @Id
     @GeneratedValue

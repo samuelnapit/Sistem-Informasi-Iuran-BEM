@@ -12,16 +12,18 @@
     <title>Sistem Iuran BEM</title>
 
     <!-- Bootstrap core CSS-->
-    <link th:href="@{vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
 
     <!-- Custom fonts for this template-->
-    <link th:href="@{vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
 
     <!-- Page level plugin CSS-->
-    <link th:href="@{vendor/datatables/dataTables.bootstrap4.css}" rel="stylesheet">
+    <link th:href="@{/vendor/datatables/dataTables.bootstrap4.css}" rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link th:href="@{css/sb-admin.css}" rel="stylesheet">
+    <link th:href="@{/css/sb-admin.css}" rel="stylesheet">
+
+    <link th:href="@{/fonts}" rel="stylesheet">
 
 </head>
 
@@ -29,7 +31,7 @@
 
 <nav class="navbar navbar-expand navbar-white bg-white static-top">
 
-    <a class="navbar-brand mr-1" th:href="@{index}"style="color: deepskyblue">
+    <a class="navbar-brand mr-1" th:href="@{/index}"style="color: deepskyblue">
         <img th:src="@{/download.png}" width="75px">
         Sistem Iuran Badan Eksekutif Mahasiswa
     </a>
@@ -83,7 +85,7 @@
     <!-- Sidebar -->
     <ul class="sidebar navbar-nav" style="background: white">
         <li class="nav-item active">
-            <a class="nav-link" th:href="@{index}" style="color: deepskyblue">
+            <a class="nav-link" th:href="@{/index}" style="color: deepskyblue">
                 <i class="fas fa-fw fa-tachometer-alt" style="color: deepskyblue"></i>
                 <span>Dashboard</span>
             </a>
@@ -94,12 +96,12 @@
                 <span>Payment</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" th:href="@{/datamahasiswa}" style="color: deepskyblue">
+            <a class="nav-link" th:href="@{/data}" style="color: deepskyblue">
                 <i class="fas fa-fw fa-database" style="color: deepskyblue"></i>
                 <span>Data Mahasiswa</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" th:href="@{/payment}" style="color: deepskyblue">
+            <a class="nav-link" th:href="@{/pengumuman}" style="color: deepskyblue">
                 <i class="fas fa-fw fa-newspaper" style="color: deepskyblue"></i>
                 <span>Pengumuman</span></a>
         </li>
@@ -109,37 +111,39 @@
     <div id="content-wrapper">
         <ol class="breadcrumb" style="background: #f5f5f5">
             <li class="breadcrumb-item" style="background: #f5f5f5">
-                <a th:href="@{/index}" style="color: deepskyblue">Home</a>
+                <a th:href="@{/index}" style="color: deepskyblue" class="fas fa-home">  Home</a>
             </li>
             <li class="breadcrumb-item active">Payment</li>
         </ol>
         <hr>
         <div class="container-fluid">
-            <table class="table table-bordered">
-                <tr style="text-align: center">
-                    <th>NIM</th>
-                    <th>Nama Mahasiswa</th>
-                    <th>Iuran</th>
-                    <th>Status</th>
-                    <th>Action</th>
-                </tr>
-                <tr th:each="mahasiswas : ${mahasiswa}">
-                    <td th:text="${mahasiswas.nim}"></td>
-                    <td th:text="${mahasiswas.nama}"></td>
-                    <td th:text="${mahasiswas.iuran}"></td>
-                    <td th:text="${mahasiswas.status}"></td>
-                    <td>
-                        <a th:href="${'/mahasiswa/edit' +mahasiswas.nim}">
-                            <span class="glyphicon glyphicon-edit"></span>
-                        </a>
-                        <a th:href="${'/mahasiswa/hapus' +mahasiswas.nim}">
-                            <span class="glyphicon glyphicon-remove"> </span>
-                        </a>
-                    </td>
-                </tr>
-            </table>
+            <form>
+                <div class="form-group row">
+                    <label for="staticNim" class="col-sm-2 col-form-label">NIM</label>
+                    <div class="col-sm-10" th:each="mahasiswas : ${mahasiswa}">
+                        <input type="text" readonly class="form-control-plaintext" id="staticNim"  th:value="${mahasiswas.nim}">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="staticNim" class="col-sm-2 col-form-label">Nama Mahasiswa</label>
+                    <div class="col-sm-10" th:each="mahasiswas : ${mahasiswa}">
+                        <input type="text" readonly class="form-control-plaintext" id="staticNim"  th:value="${mahasiswas.nama}">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="staticNim" class="col-sm-2 col-form-label">Jenis Kelamin</label>
+                    <div class="col-sm-10" th:each="mahasiswas : ${mahasiswa}">
+                        <input type="text" readonly class="form-control-plaintext" id="staticNim"  th:value="${mahasiswas.jenis_kelamin}">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="staticNim" class="col-sm-2 col-form-label">Status Pembayaran</label>
+                    <div class="col-sm-10" th:each="mahasiswas : ${mahasiswa}">
+                        <input type="text" readonly class="form-control-plaintext" id="staticNim"  th:value="${mahasiswas.status}">
+                    </div>
+                </div>
             <div>
-                <a class="btn btn-info" href="/payment/create">Tambah Mahasiswa Baru</a>
+                <a class="btn btn-info" th:href="@{/data}" style="background: deepskyblue">Edit</a>
             </div>
         </div>
 
@@ -163,23 +167,23 @@
         </div>
 
         <!-- Bootstrap core JavaScript-->
-        <script th:src="@{vendor/jquery/jquery.min.js}"></script>
-        <script th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+        <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+        <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
 
         <!-- Core plugin JavaScript-->
-        <script th:src="@{vendor/jquery-easing/jquery.easing.min.js}"></script>
+        <script th:src="@{/vendor/jquery-easing/jquery.easing.min.js}"></script>
 
         <!-- Page level plugin JavaScript-->
-        <script th:src="@{vendor/chart.js/Chart.min.js}"></script>
-        <script th:src="@{vendor/datatables/jquery.dataTables.js}"></script>
-        <script th:src="@{vendor/datatables/dataTables.bootstrap4.js}"></script>
+        <script th:src="@{/vendor/chart.js/Chart.min.js}"></script>
+        <script th:src="@{/vendor/datatables/jquery.dataTables.js}"></script>
+        <script th:src="@{/vendor/datatables/dataTables.bootstrap4.js}"></script>
 
         <!-- Custom scripts for all pages-->
-        <script th:src="@{js/sb-admin.min.js}"></script>
+        <script th:src="@{/js/sb-admin.min.js}"></script>
 
         <!-- Demo scripts for this page-->
-        <script th:src="@{js/demo/datatables-demo.js}"></script>
-        <script th:src="@{js/demo/chart-area-demo.js}"></script>
+        <script th:src="@{/js/demo/datatables-demo.js}"></script>
+        <script th:src="@{/js/demo/chart-area-demo.js}"></script>
 
 </body>
 

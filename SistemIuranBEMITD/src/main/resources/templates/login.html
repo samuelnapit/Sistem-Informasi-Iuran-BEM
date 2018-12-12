@@ -4,28 +4,34 @@
     <title>Login</title>
 
     <!-- Bootstrap core CSS -->
-    <link th:href="@{/css/bootstrap.css}" rel="stylesheet" media="screen"/>
+    <link th:href="@{/csss/bootstrap.css}" rel="stylesheet"/>
+    <link th:href="@{/csss/bootstrap-grid.css}" rel="stylesheet"/>
+    <link th:href="@{/csss/bootstrap-reboot.css}" rel="stylesheet"/>
     <!-- Custom styles for this template -->
-    <link th:href="@{/css/starter-template.css}" rel="stylesheet" media="screen"/>
+    <link th:href="@{/jss/bootstrap.bundle.js}" rel="stylesheet"/>
+    <link th:href="@{/jss/bootstrap.js}" rel="stylesheet"/>
 </head>
 <body style="background: #f5f5f5">
-<div class="container well" style="margin: 100px auto; width:400px; height: 500px; background: white;">
+<div class="container well shadow" style="margin: 100px auto; width:400px; height: 500px; background: white;">
     <div class="row">
         <div class="col-md-12 col-md-offset-0" style="text-align: center">
             <br>
-            <img th:src="@{/download.png}" style="width: 100px"/>
+            <img th:src="@{download.png}" style="width: 100px"/>
             <hr>
-            <form th:action="@{/login}" method="post">
+            <form class="needs-validation" novalidate th:action="@{/login}">
                 <br>
-                <div class="form-group" style="text-align: left; color: gray;">
-                    <label for="username">Username</label>
+                <div class="form-row" style="text-align: left; color: gray;">
+                    <label for="validationCustomUsername">Username</label>
                     <br>
-                    <input type="text" id="username" name="username" class="form-control col-md-12 col-md-offset-0" autofocus="autofocus" style="height: 33px;">
+                    <input type="text" id="validationCustomUsername" class="form-control col-md-12 col-md-offset-0" style="height: 33px" required>
+                    <div class="invalid-feedback">Insert Username</div>
                 </div>
-                <div class="form-group" style="text-align: left; color: gray">
-                    <label for="password">Password</label>
+                <br>
+                <div class="form-row" style="text-align: left; color: gray">
+                    <label for="validationCustomPassword">Password</label>
                     <br>
-                    <input type="password" id="password" name="password" class="form-control col-md-12 col-md-offset-0" style="height: 33px;">
+                    <input type="password" id="validationCustomPassword" class="form-control col-md-12 col-md-offset-0" style="height: 33px" required>
+                    <div class="invalid-feedback">Insert Password</div>
                     <div th:if="${param.error}">
                         <div class="form-group field-loginform-password required has-error">
                             <div class="help-block">Incorrect Username or Password</div>
@@ -40,5 +46,25 @@
         </div>
     </div>
 </div>
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>
 </body>
 </html>
