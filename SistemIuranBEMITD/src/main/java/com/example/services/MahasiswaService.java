@@ -11,4 +11,6 @@ public interface MahasiswaService {
     Mahasiswa saveOrUpdate(Mahasiswa mahasiswa);
 
     Mahasiswa getNim(String nim);
+
+    void deleteMahasiswa(String nim);
 }

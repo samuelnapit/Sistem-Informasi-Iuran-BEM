@@ -90,7 +90,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" th:href="@{/payment}" style="color: deepskyblue">
+            <a class="nav-link" th:href="@{/bendaharabem/payment}" style="color: deepskyblue">
                 <i class="fas fa-fw fa-money-bill" style="color: deepskyblue"></i>
                 <span>Payment</span></a>
         </li>
@@ -119,36 +119,20 @@
         </ol>
         <hr>
         <div class="container-fluid">
-            <h4>Tambah Mahasiswa</h4>
+            <h4>Tagihan Baru</h4>
             <br>
-            <form th:object="${mahasiswa}" th:action="@{/data/create}" method="post">
+            <form th:object="${payment}" th:action="@{/bendaharabem/payment/create}" method="post">
+                <input type="hidden" th:field="*{id}"/>
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">NIM</label>
+                    <label class="col-sm-2 col-form-label">Periode Tagihan</label>
                     <div class="col-sm-2">
-                        <input type="text" class="form-control" th:field="*{nim}"/>
+                        <input type="text" class="form-control" th:field="*{periode}"/>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Nama Mahasiswa</label>
+                    <label class="col-sm-2 col-form-label">Tagihan</label>
                     <div class="col-sm-2">
-                        <input type="text" class="form-control" th:field="*{nama}"/>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="inputJk" class="col-sm-2 col-form-label">Jenis Kelamin</label>
-                    <div class="col-sm-2">
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="inputJk" id="inputJk" value="Laki-Laki" th:field="*{jenis_kelamin}" required>
-                            <label class="form-check-label" for="inputJk">
-                                Laki-Laki
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="inputJk" id="inputJk" value="Perempuan" th:field="*{jenis_kelamin}" required>
-                            <label class="form-check-label" for="inputJk">
-                                Perempuan
-                            </label>
-                        </div>
+                        <input type="text" class="form-control" th:field="*{tagihan}"/>
                     </div>
                 </div>
                 <div class="form-group">

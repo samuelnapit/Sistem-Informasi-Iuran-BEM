@@ -12,18 +12,18 @@
     <title>Sistem Iuran BEM</title>
 
     <!-- Bootstrap core CSS-->
-    <link th:href="@{vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
 
     <!-- Custom fonts for this template-->
-    <link th:href="@{vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
 
     <!-- Page level plugin CSS-->
-    <link th:href="@{vendor/datatables/dataTables.bootstrap4.css}" rel="stylesheet">
+    <link th:href="@{/vendor/datatables/dataTables.bootstrap4.css}" rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link th:href="@{css/sb-admin.css}" rel="stylesheet">
+    <link th:href="@{/css/sb-admin.css}" rel="stylesheet">
 
-    <link th:href="@{fonts}" rel="stylesheet">
+    <link th:href="@{/fonts}" rel="stylesheet">
 
 </head>
 
@@ -85,23 +85,23 @@
     <!-- Sidebar -->
     <ul class="sidebar navbar-nav" style="background: white">
         <li class="nav-item active">
-            <a class="nav-link" th:href="@{index}" style="color: deepskyblue">
+            <a class="nav-link" th:href="@{/bendaharabem/index}" style="color: deepskyblue">
                 <i class="fas fa-fw fa-tachometer-alt" style="color: deepskyblue"></i>
                 <span>Dashboard</span>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" th:href="@{/payment}" style="color: deepskyblue">
+            <a class="nav-link" th:href="@{/bendaharabem/payment}" style="color: deepskyblue">
                 <i class="fas fa-fw fa-money-bill" style="color: deepskyblue"></i>
                 <span>Payment</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" th:href="@{/data}" style="color: deepskyblue">
+            <a class="nav-link" th:href="@{/bendaharabem/data}" style="color: deepskyblue">
                 <i class="fas fa-fw fa-database" style="color: deepskyblue"></i>
-                <span>Data Mahasiswa</span></a>
+                <span>Data Kelas</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" th:href="@{/pengumuman}" style="color: deepskyblue">
+            <a class="nav-link" th:href="@{/bendaharabem/pengumuman}" style="color: deepskyblue">
                 <i class="fas fa-fw fa-newspaper" style="color: deepskyblue"></i>
                 <span>Pengumuman</span></a>
         </li>
@@ -118,41 +118,43 @@
         <hr>
         <div class="container-fluid">
             <table class="table table-stripped table-condensed table-bordered">
-                <tr>
-                    <th>NIM</th>
-                    <th>Nama Mahasiswa</th>
-                    <th>Iuran</th>
-                    <th>Status</th>
-                    <th>Action</th>
-                </tr>
-                <tr th:each="mahasiswas : ${mahasiswa}">
-                    <td th:text="${mahasiswas.nim}"></td>
-                    <td th:text="${mahasiswas.nama}"></td>
-                    <td th:text="${mahasiswas.iuran}"></td>
-                    <td th:text="${mahasiswas.status}"; style="font-style: italic"></td>
-                    <td>
-                        <div class="btn-group open">
-                            <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                                <span class="fas fa-wrench">  Tools</span>
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                                <li>
-                                    <a th:href="${'/data/viewdetail/' +mahasiswas.nim}" class="dropdown-item" title="View Detail">
-                                        <span class="fas fa-eye"> View Detail</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a th:href="${'/data/delete/' +mahasiswas.nim}" class="dropdown-item" title="Delete">
-                                        <span class="fas fa-trash"> Delete</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Periode Tagihan</th>
+                        <th>Tagihan</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="payments : ${payment}">
+                        <td th:text="${payments.id}"></td>
+                        <td th:text="${payments.periode}"></td>
+                        <td th:text="${payments.tagihan}"></td>
+                        <td>
+                            <div class="btn-group open">
+                                <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                                    <span class="fas fa-wrench">  Tools</span>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                                    <li>
+                                        <a th:href="${'/payment/viewdetail/' +payments.id}" class="dropdown-item" title="View Detail">
+                                            <span class="fas fa-eye"> View Detail</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a th:href="${'/payment/delete/' +payments.id}" class="dropdown-item" title="Delete">
+                                            <span class="fas fa-trash"> Delete</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
             </table>
             <div>
-                <a class="btn btn-info" href="/data/create" style="background: deepskyblue">Tambah Mahasiswa Baru</a>
+                <a class="btn btn-info" href="/bendaharabem/payment/create" style="background: deepskyblue">Buat Tagihan Baru</a>
             </div>
         </div>
 
@@ -184,23 +186,23 @@
         </div>
 
         <!-- Bootstrap core JavaScript-->
-        <script th:src="@{vendor/jquery/jquery.min.js}"></script>
-        <script th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+        <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+        <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
 
         <!-- Core plugin JavaScript-->
-        <script th:src="@{vendor/jquery-easing/jquery.easing.min.js}"></script>
+        <script th:src="@{/vendor/jquery-easing/jquery.easing.min.js}"></script>
 
         <!-- Page level plugin JavaScript-->
-        <script th:src="@{vendor/chart.js/Chart.min.js}"></script>
-        <script th:src="@{vendor/datatables/jquery.dataTables.js}"></script>
-        <script th:src="@{vendor/datatables/dataTables.bootstrap4.js}"></script>
+        <script th:src="@{/vendor/chart.js/Chart.min.js}"></script>
+        <script th:src="@{/vendor/datatables/jquery.dataTables.js}"></script>
+        <script th:src="@{/vendor/datatables/dataTables.bootstrap4.js}"></script>
 
         <!-- Custom scripts for all pages-->
-        <script th:src="@{js/sb-admin.min.js}"></script>
+        <script th:src="@{/js/sb-admin.min.js}"></script>
 
         <!-- Demo scripts for this page-->
-        <script th:src="@{js/demo/datatables-demo.js}"></script>
-        <script th:src="@{js/demo/chart-area-demo.js}"></script>
+        <script th:src="@{/js/demo/datatables-demo.js}"></script>
+        <script th:src="@{/js/demo/chart-area-demo.js}"></script>
 
 </body>
 

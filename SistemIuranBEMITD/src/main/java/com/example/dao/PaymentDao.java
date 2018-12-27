@@ -1,15 +1,15 @@
 package com.example.dao;
 
-import com.example.services.*;
 import com.example.model.*;
+import com.example.services.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.*;
 
 @Service
-public class MahasiswaDao implements MahasiswaService {
+public class PaymentDao implements PaymentService {
 
     private EntityManagerFactory emf;
 
@@ -19,34 +19,34 @@ public class MahasiswaDao implements MahasiswaService {
     }
 
     @Override
-    public List<Mahasiswa> listMahasiswa() {
+    public List<Payment> listPayment() {
         EntityManager em = emf.createEntityManager();
-        return em.createQuery("from Mahasiswa", Mahasiswa.class).getResultList();
+        return em.createQuery("from Payment", Payment.class).getResultList();
     }
 
     @Override
-    public Mahasiswa saveOrUpdate(Mahasiswa mahasiswa) {
+    public Payment saveOrUpdatePay(Payment payment) {
 
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        Mahasiswa saved = em.merge(mahasiswa);
+        Payment saved = em.merge(payment);
         em.getTransaction().commit();
         return saved;
     }
 
     @Override
-    public Mahasiswa getNim(String nim){
+    public Payment getId(Integer id){
 
         EntityManager em = emf.createEntityManager();
-        return em.find(Mahasiswa.class, nim);
+        return em.find(Payment.class, id);
     }
 
     @Override
-    public void deleteMahasiswa(String nim) {
+    public void deletePayment(Integer id) {
 
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        em.remove(em.find(Mahasiswa.class, nim));
+        em.remove(em.find(Payment.class, id));
         em.getTransaction().commit();
 
     }

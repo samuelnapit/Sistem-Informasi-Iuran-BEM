@@ -12,7 +12,6 @@
     <title>Sistem Iuran BEM</title>
 
     <!-- Bootstrap core CSS-->
-    <link th:href="@{/csss/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
     <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
 
     <!-- Custom fonts for this template-->
@@ -24,12 +23,11 @@
     <!-- Custom styles for this template-->
     <link th:href="@{/css/sb-admin.css}" rel="stylesheet">
 
-    <link th:href="@{/css/style.css}" rel="stylesheet">
-    <script type="text/javascript" th:src="@{/js/scripts.js}"></script>
+    <link th:href="@{/fonts}" rel="stylesheet">
 
 </head>
 
-<body id="page-top" style="background: #f5f5f5" onLoad="renderTime();">
+<body id="page-top" style="background: #f5f5f5">
 
 <nav class="navbar navbar-expand navbar-white bg-white static-top">
 
@@ -87,23 +85,23 @@
     <!-- Sidebar -->
     <ul class="sidebar navbar-nav" style="background: white">
         <li class="nav-item active">
-            <a class="nav-link" th:href="@{index}" style="color: deepskyblue">
+            <a class="nav-link" th:href="@{/bendaharabem/index}" style="color: deepskyblue">
                 <i class="fas fa-fw fa-tachometer-alt" style="color: deepskyblue"></i>
                 <span>Dashboard</span>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" th:href="@{/payment}" style="color: deepskyblue">
+            <a class="nav-link" th:href="@{/bendaharabem/payment}" style="color: deepskyblue">
                 <i class="fas fa-fw fa-money-bill" style="color: deepskyblue"></i>
                 <span>Payment</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" th:href="@{/data}" style="color: deepskyblue">
+            <a class="nav-link" th:href="@{/bendaharabem/data}" style="color: deepskyblue">
                 <i class="fas fa-fw fa-database" style="color: deepskyblue"></i>
-                <span>Data Mahasiswa</span></a>
+                <span>Data Kelas</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" th:href="@{/pengumuman}" style="color: deepskyblue">
+            <a class="nav-link" th:href="@{/bendaharabem/pengumuman}" style="color: deepskyblue">
                 <i class="fas fa-fw fa-newspaper" style="color: deepskyblue"></i>
                 <span>Pengumuman</span></a>
         </li>
@@ -113,94 +111,92 @@
     <div id="content-wrapper">
         <ol class="breadcrumb" style="background: #f5f5f5">
             <li class="breadcrumb-item" style="background: #f5f5f5">
-                <a th:href="@{/index}" style="color: deepskyblue" class="fas fa-home">   Home</a>
+                <a th:href="@{/index}" style="color: deepskyblue" class="fas fa-home">  Home</a>
             </li>
-            <li class="breadcrumb-item active">Dashboard</li>
+            <li class="breadcrumb-item active">Data Kelas</li>
         </ol>
         <hr>
         <div class="container-fluid">
-
-            <section class="content" id="main-content">
-                <div class="row">
-                    <div id="left-block" class="col-12 col-sm-6 col-md-8">
-                        <div id="box box-solid" class="box-body">
-                            <div class="row">
-                                <h4 style="color: gray"><div id="clockDisplay" class="container"></div></h4>
-                            </div>
-                            <div class="row">
-                                <div>
-
-
-                                </div>
-                            </div>
+            <table class="table table-stripped table-condensed table-bordered">
+                <tr>
+                    <th>Kode Kelas</th>
+                    <th>Prodi</th>
+                    <th>Aksi</th>
+                </tr>
+                <tr th:each="kelass : ${kelas}">
+                    <td th:text="${kelass.kode}"></td>
+                    <td th:text="${kelass.prodi}"></td>
+                    <td>
+                        <div class="btn-group open">
+                            <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                                <span class="fas fa-wrench">  Tools</span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                                <li>
+                                    <a th:href="${'/bendaharabem/data/viewdetail/' +kelass.kode}" class="dropdown-item" title="View Detail">
+                                        <span class="fas fa-eye"> View Detail</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a th:href="${'/bendaharabem/data/delete/' +kelass.kode}" class="dropdown-item" title="Delete">
+                                        <span class="fas fa-trash"> Delete</span>
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
-                    </div>
-                    <div id="right-block" class="col-6 col-md-4">
-                        <div class="box box solid">
-                            <div id="right-block-body" class="box-body">
-                                <div class="row">
-                                    <div id="pengumuman-block" class="col-sm-12">
-                                        <h3 class="box-title" style="color: gray;">Pengumuman</h3>
-                                    </div>
-                                    <p></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-            </section>
-        </div>
-    </div>
-</div>
-
-    <!--Main-->
-<footer class="sticky-footer" style="background: #f5f5f5">
-    <div class="container my-auto">
-        <div class="copyright text-center my-auto">
-            <span>Sistem Iuran BEM Copyright © 2018</span>
-        </div>
-    </div>
-</footer>
-
-
-            <!-- Logout Modal-->
-<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" th:href="@{/login}">Logout</a>
+                    </td>
+                </tr>
+            </table>
+            <div>
+                <a class="btn btn-info" href="/bendaharabem/data/create" style="background: deepskyblue">Tambah Kelas Baru</a>
             </div>
         </div>
-    </div>
-</div>
 
-<!-- Bootstrap core JavaScript-->
-<script th:src="@{/vendor/jquery/jquery.min.js}"></script>
-<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
-<script th:src="@{/jss/bootstrap.bundle.js}"></script>
-<script th:src="@{/jss/bootstrap.js}"></script>
+        <footer class="sticky-footer" style="background: #f5f5f5">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>Sistem Iuran BEM Copyright © 2018</span>
+                </div>
+            </div>
+        </footer>
 
-<!-- Core plugin JavaScript-->
-<script th:src="@{/vendor/jquery-easing/jquery.easing.min.js}"></script>
+        <!-- Logout Modal-->
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <a class="btn btn-primary" th:href="@{/login}">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-<!-- Page level plugin JavaScript-->
-<script th:src="@{/vendor/chart.js/Chart.min.js}"></script>
-<script th:src="@{/vendor/datatables/jquery.dataTables.js}"></script>
-<script th:src="@{/vendor/datatables/dataTables.bootstrap4.js}"></script>
+        <!-- Bootstrap core JavaScript-->
+        <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+        <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
 
-<!-- Custom scripts for all pages-->
-<script th:src="@{/js/sb-admin.min.js}"></script>
+        <!-- Core plugin JavaScript-->
+        <script th:src="@{/vendor/jquery-easing/jquery.easing.min.js}"></script>
 
-<!-- Demo scripts for this page-->
-<script th:src="@{/js/demo/datatables-demo.js}"></script>
-<script th:src="@{/js/demo/chart-area-demo.js}"></script>
+        <!-- Page level plugin JavaScript-->
+        <script th:src="@{/vendor/chart.js/Chart.min.js}"></script>
+        <script th:src="@{/vendor/datatables/jquery.dataTables.js}"></script>
+        <script th:src="@{/vendor/datatables/dataTables.bootstrap4.js}"></script>
+
+        <!-- Custom scripts for all pages-->
+        <script th:src="@{/js/sb-admin.min.js}"></script>
+
+        <!-- Demo scripts for this page-->
+        <script th:src="@{/js/demo/datatables-demo.js}"></script>
+        <script th:src="@{/js/demo/chart-area-demo.js}"></script>
 
 </body>
 

@@ -6,13 +6,32 @@ import javax.persistence.*;
 	public class Kelas {
 
     @Id
-    @GeneratedValue
     @Column(name="nama_kelas")
     private String kode;
 
     private Long iuran;
 
-    public String getKode() {
+    private String status;
+
+    private String prodi;
+
+    public String getProdi() {
+            return prodi;
+        }
+
+        public void setProdi(String prodi) {
+            this.prodi = prodi;
+        }
+
+        public String getStatus() {
+            return status;
+        }
+
+        public void setStatus(String status) {
+            this.status = status;
+        }
+
+        public String getKode() {
         return kode;
     }
 

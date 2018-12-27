@@ -6,7 +6,6 @@ import javax.persistence.*;
 public class Mahasiswa {
 
 	@Id
-	@GeneratedValue
 	private String nim;
 	
 	@Column(name="nama_mahasiswa")
