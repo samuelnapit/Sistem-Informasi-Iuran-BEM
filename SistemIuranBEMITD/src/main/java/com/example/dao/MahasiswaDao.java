@@ -1,6 +1,6 @@
 package com.example.dao;
 
-import com.example.services.*;
+import com.example.service.*;
 import com.example.model.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;

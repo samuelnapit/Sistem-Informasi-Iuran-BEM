@@ -1,4 +1,4 @@
-package com.example.services;
+package com.example.service;
 
 import com.example.model.*;
 
@@ -10,7 +10,7 @@ public interface PaymentService {
 
     Payment saveOrUpdatePay(Payment payment);
 
-    Payment getId(Integer id);
-
-    void deletePayment(Integer id);
+//    Payment getId(Integer id);
+//
+//    void deletePayment(Integer id);
 }

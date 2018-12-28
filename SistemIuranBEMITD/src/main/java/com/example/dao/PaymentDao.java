@@ -1,7 +1,7 @@
 package com.example.dao;
 
 import com.example.model.*;
-import com.example.services.*;
+import com.example.service.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 
@@ -34,20 +34,20 @@ public class PaymentDao implements PaymentService {
         return saved;
     }
 
-    @Override
-    public Payment getId(Integer id){
-
-        EntityManager em = emf.createEntityManager();
-        return em.find(Payment.class, id);
-    }
-
-    @Override
-    public void deletePayment(Integer id) {
-
-        EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-        em.remove(em.find(Payment.class, id));
-        em.getTransaction().commit();
-
-    }
+//    @Override
+//    public Payment getId(Integer id){
+//
+//        EntityManager em = emf.createEntityManager();
+//        return em.find(Payment.class, id);
+//    }
+//
+//    @Override
+//    public void deletePayment(Integer id) {
+//
+//        EntityManager em = emf.createEntityManager();
+//        em.getTransaction().begin();
+//        em.remove(em.find(Payment.class, id));
+//        em.getTransaction().commit();
+//
+//    }
 }

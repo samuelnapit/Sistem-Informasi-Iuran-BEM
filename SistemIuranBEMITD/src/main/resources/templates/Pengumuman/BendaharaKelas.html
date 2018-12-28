@@ -31,7 +31,7 @@
 
 <nav class="navbar navbar-expand navbar-white bg-white static-top">
 
-    <a class="navbar-brand mr-1" th:href="@{index}"style="color: deepskyblue">
+    <a class="navbar-brand mr-1" th:href="@{/index}"style="color: deepskyblue">
         <img th:src="@{/download.png}" width="75px">
         Sistem Iuran Badan Eksekutif Mahasiswa
     </a>
@@ -85,23 +85,23 @@
     <!-- Sidebar -->
     <ul class="sidebar navbar-nav" style="background: white">
         <li class="nav-item active">
-            <a class="nav-link" th:href="@{/bendaharabem/index}" style="color: deepskyblue">
+            <a class="nav-link" th:href="@{/index}" style="color: deepskyblue">
                 <i class="fas fa-fw fa-tachometer-alt" style="color: deepskyblue"></i>
                 <span>Dashboard</span>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" th:href="@{/bendaharabem/payment}" style="color: deepskyblue">
+            <a class="nav-link" th:href="@{/payment}" style="color: deepskyblue">
                 <i class="fas fa-fw fa-money-bill" style="color: deepskyblue"></i>
                 <span>Payment</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" th:href="@{/bendaharabem/data}" style="color: deepskyblue">
+            <a class="nav-link" th:href="@{/data}" style="color: deepskyblue">
                 <i class="fas fa-fw fa-database" style="color: deepskyblue"></i>
-                <span>Data Kelas</span></a>
+                <span>Data Mahasiswa</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" th:href="@{/bendaharabem/pengumuman}" style="color: deepskyblue">
+            <a class="nav-link" th:href="@{/pengumuman}" style="color: deepskyblue">
                 <i class="fas fa-fw fa-newspaper" style="color: deepskyblue"></i>
                 <span>Pengumuman</span></a>
         </li>
@@ -113,53 +113,16 @@
             <li class="breadcrumb-item" style="background: #f5f5f5">
                 <a th:href="@{/index}" style="color: deepskyblue" class="fas fa-home">  Home</a>
             </li>
-            <li class="breadcrumb-item active">Data Kelas</li>
+            <li class="breadcrumb-item active">Payment</li>
         </ol>
         <hr>
         <div class="container-fluid">
-            <table class="table table-stripped table-condensed table-bordered">
-                <tr>
-                    <th>Kode Kelas</th>
-                    <th>Fakultas</th>
-                    <th>Aksi</th>
-                </tr>
-                <tr th:each="users : ${user}">
-                    <td th:text="${users.username}"></td>
-                    <td th:text="${users.fakultas}"></td>
-                    <td>
-                        <div class="btn-group open">
-                            <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                                <span class="fas fa-wrench">  Tools</span>
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                                <li>
-                                    <a th:href="${'/bendaharabem/data/viewdetail/' +users.username}" class="dropdown-item" title="View Detail">
-                                        <span class="fas fa-eye"> View Detail</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a th:href="${'/bendaharabem/data/delete/' +users.username}" class="dropdown-item" title="Delete">
-                                        <span class="fas fa-trash"> Delete</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
-            </table>
+            <h2 th:text="${pengumuman.judul}"></h2>
+            <p  th:text="${pengumuman.isi}"></p>
             <div>
-                <a class="btn btn-info" href="/bendaharabem/data/create" style="background: deepskyblue">Tambah Kelas Baru</a>
+                <a class="btn btn-info" th:href="${'/bendaharabem/pengumuman/edit/' +pengumuman.id}" style="background: deepskyblue">Edit</a>
             </div>
         </div>
-
-        <footer class="sticky-footer" style="background: #f5f5f5">
-            <div class="container my-auto">
-                <div class="copyright text-center my-auto">
-                    <span>Sistem Iuran BEM Copyright © 2018</span>
-                </div>
-            </div>
-        </footer>
-
         <!-- Logout Modal-->
         <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">

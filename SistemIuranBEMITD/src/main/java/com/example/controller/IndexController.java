@@ -1,19 +1,28 @@
 package com.example.controller;
 
-import org.springframework.stereotype.*;
-import org.springframework.web.bind.annotation.*;
+import com.example.service.PengumumanService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class IndexController {
 
+    @Autowired
+    PengumumanService pengumumanService;
+
     @RequestMapping("/bendaharakelas/index")
-    public  String indexKelas() {
+    public String indexKelas(Model model)
+    {
+        model.addAttribute("pengumuman", pengumumanService.listPengumuman());
         return "index/bendaharakelas";
     }
 
     @RequestMapping("bendaharabem/index")
-    public String indexBem()
+    public String indexBem(Model model)
     {
+        model.addAttribute("pengumuman", pengumumanService.listPengumuman());
         return "index/bendaharabem";
     }
 }

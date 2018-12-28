@@ -18,19 +18,19 @@
             <br>
             <img th:src="@{download.png}" style="width: 100px"/>
             <hr>
-            <form class="needs-validation" novalidate th:action="@{/login}">
+            <form class="needs-validation" novalidate th:action="@{/login}" method="post">
                 <br>
                 <div class="form-row" style="text-align: left; color: gray;">
                     <label for="validationCustomUsername">Username</label>
                     <br>
-                    <input type="text" id="validationCustomUsername" class="form-control col-md-12 col-md-offset-0" style="height: 33px" required>
+                    <input type="text" id="validationCustomUsername" class="form-control col-md-12 col-md-offset-0" style="height: 33px" name="username" required>
                     <div class="invalid-feedback">Insert Username</div>
                 </div>
                 <br>
                 <div class="form-row" style="text-align: left; color: gray">
                     <label for="validationCustomPassword">Password</label>
                     <br>
-                    <input type="password" id="validationCustomPassword" class="form-control col-md-12 col-md-offset-0" style="height: 33px" required>
+                    <input type="password" id="validationCustomPassword" class="form-control col-md-12 col-md-offset-0" style="height: 33px" name="password" required>
                     <div class="invalid-feedback">Insert Password</div>
                     <div th:if="${param.error}">
                         <div class="form-group field-loginform-password required has-error">
@@ -46,25 +46,5 @@
         </div>
     </div>
 </div>
-<script>
-    // Example starter JavaScript for disabling form submissions if there are invalid fields
-    (function() {
-        'use strict';
-        window.addEventListener('load', function() {
-            // Fetch all the forms we want to apply custom Bootstrap validation styles to
-            var forms = document.getElementsByClassName('needs-validation');
-            // Loop over them and prevent submission
-            var validation = Array.prototype.filter.call(forms, function(form) {
-                form.addEventListener('submit', function(event) {
-                    if (form.checkValidity() === false) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                    }
-                    form.classList.add('was-validated');
-                }, false);
-            });
-        }, false);
-    })();
-</script>
 </body>
 </html>

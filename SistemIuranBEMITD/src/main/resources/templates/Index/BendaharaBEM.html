@@ -26,6 +26,11 @@
 
     <link th:href="@{/css/style.css}" rel="stylesheet">
     <script type="text/javascript" th:src="@{/js/scripts.js}"></script>
+    <style type="text/css">
+        .container-fluid {
+            margin-top: 10px;
+        }
+    </style>
 
 </head>
 
@@ -113,41 +118,26 @@
     <div id="content-wrapper">
         <ol class="breadcrumb" style="background: #f5f5f5">
             <li class="breadcrumb-item" style="background: #f5f5f5">
-                <a th:href="@{/index}" style="color: deepskyblue" class="fas fa-home">   Home</a>
+                <a th:href="@{/index}" style="color: deepskyblue" class="fas fa-home">  Home</a>
             </li>
-            <li class="breadcrumb-item active">Dashboard</li>
+            <li class="breadcrumb-item active">Pengumuman</li>
         </ol>
         <hr>
+        <h4 style="color: gray"><div id="clockDisplay" class="container"></div></h4>
         <div class="container-fluid">
-
-            <section class="content" id="main-content">
-                <div class="row">
-                    <div id="left-block" class="col-12 col-sm-6 col-md-8">
-                        <div id="box box-solid" class="box-body">
-                            <div class="row">
-                                <h4 style="color: gray"><div id="clockDisplay" class="container"></div></h4>
-                            </div>
-                            <div class="row">
-                                <div>
-
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="right-block" class="col-6 col-md-4">
-                        <div class="box box solid">
-                            <div id="right-block-body" class="box-body">
-                                <div class="row">
-                                    <div id="pengumuman-block" class="col-sm-12">
-                                        <h3 class="box-title" style="color: gray;">Pengumuman</h3>
-                                    </div>
-                                    <p></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-            </section>
+            <table class="table table-stripped table-condensed table-bordered">
+                <tr>
+                    <th>Pengumuman</th>
+                </tr>
+                <tr th:each="pengumumans : ${pengumuman}">
+                    <td>
+                        <a  th:text="${pengumumans.judul}" th:href="${'/bendaharabem/pengumuman/detail/' +pengumumans.id}" class="dropdown-item" title="View Detail"></a>
+                    </td>
+                </tr>
+            </table>
+            <div>
+                <a class="btn btn-info" href="/bendaharabem/pengumuman/create" style="background: deepskyblue">Buat Pengumuman</a>
+            </div>
         </div>
     </div>
 </div>

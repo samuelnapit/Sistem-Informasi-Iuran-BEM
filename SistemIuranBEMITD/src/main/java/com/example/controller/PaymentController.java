@@ -1,7 +1,7 @@
 package com.example.controller;
 
 import com.example.model.*;
-import com.example.services.*;
+import com.example.service.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 import org.springframework.ui.*;

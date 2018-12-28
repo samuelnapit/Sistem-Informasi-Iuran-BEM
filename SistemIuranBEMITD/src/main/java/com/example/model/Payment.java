@@ -10,9 +10,9 @@ public class Payment {
     private Integer id;
 
     @Column(name="periode_tagihan")
-    public String periode;
+    private String periode;
 
-    public Long tagihan;
+    private Long tagihan;
 
     public Integer getId() {
         return id;

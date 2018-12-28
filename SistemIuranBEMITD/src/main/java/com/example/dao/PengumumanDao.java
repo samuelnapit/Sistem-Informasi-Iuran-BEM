@@ -1,7 +1,7 @@
 package com.example.dao;
 
 import com.example.model.*;
-import com.example.services.*;
+import com.example.service.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 
@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.util.*;
 
 @Service
-public class KelasDao implements KelasService {
+public class PengumumanDao implements PengumumanService {
 
     private EntityManagerFactory emf;
 
@@ -19,34 +19,35 @@ public class KelasDao implements KelasService {
     }
 
     @Override
-    public List<Kelas> listKelas() {
+    public List<Pengumuman> listPengumuman() {
         EntityManager em = emf.createEntityManager();
-        return em.createQuery("from Kelas", Kelas.class).getResultList();
+        return em.createQuery("from Pengumuman", Pengumuman.class).getResultList();
     }
 
     @Override
-    public Kelas saveOrUpdateKel(Kelas kelas) {
+    public Pengumuman saveOrUpdatePengumuman(Pengumuman pengumuman) {
 
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        Kelas saved = em.merge(kelas);
+        Pengumuman saved = em.merge(pengumuman);
         em.getTransaction().commit();
         return saved;
     }
 
     @Override
-    public Kelas getKode(String kode){
+    public Pengumuman getId(Integer id){
 
         EntityManager em = emf.createEntityManager();
-        return em.find(Kelas.class, kode);
+        return em.find(Pengumuman.class, id);
     }
 
     @Override
-    public void deteleKelas(String kode) {
+    public void deletePengumuman(Integer id) {
+
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        em.remove(em.find(Kelas.class,kode));
+        em.remove(em.find(Pengumuman.class, id));
         em.getTransaction().commit();
-    }
 
+    }
 }

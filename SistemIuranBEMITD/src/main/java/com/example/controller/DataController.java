@@ -1,21 +1,21 @@
 package com.example.controller;
 
 import com.example.model.*;
-import com.example.services.*;
+import com.example.service.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 import org.springframework.ui.*;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.validation.Valid;
 
 @Controller
 public class DataController {
 
-    private MahasiswaService mahasiswaService;
-
     @Autowired
-    public void setMahasiswaService(MahasiswaService mahasiswaService) {
-        this.mahasiswaService = mahasiswaService;
-    }
+    private MahasiswaService mahasiswaService;
 
     @RequestMapping("/bendaharakelas/data")
     public String MahasiswaList(Model model)
@@ -39,13 +39,13 @@ public class DataController {
     @RequestMapping(value = "/bendaharakelas/data/viewdetail/{nim}", method = RequestMethod.GET)
     public String viewDetail(@PathVariable String nim, Model model) {
         model.addAttribute("mahasiswa", mahasiswaService.getNim(nim));
-        return "viewdetail";
+        return "detailMahasiswa";
     }
 
     @RequestMapping(value = "/bendaharakelas/data/edit/{nim}", method = RequestMethod.GET)
     public String editMahasiswa(@PathVariable String nim, Model model) {
         model.addAttribute("mahasiswa", mahasiswaService.getNim(nim));
-        return "formEdit";
+        return "formEditKelas";
     }
 
     @RequestMapping(value = "/bendaharakelas/data/delete/{nim}", method = RequestMethod.GET)
@@ -54,47 +54,46 @@ public class DataController {
         return "redirect:/data";
     }
 
-    private KelasService kelasService;
+//===============================================================================================
 
+    //==================================================
     @Autowired
-    public void setKelasService(KelasService kelasService) {
-        this.kelasService = kelasService;
-    }
+    private UserService userService;
 
     @RequestMapping("/bendaharabem/data")
-    public String KelasList(Model model)
+    public String UserList(Model model)
     {
-        model.addAttribute("kelas", kelasService.listKelas());
+        model.addAttribute("user", userService.listUser());
         return "data/bendaharabem";
     }
+    @RequestMapping(value = {"/bendaharabem/data/create"}, method = RequestMethod.GET)
+    public ModelAndView signUp() {
+        ModelAndView model = new ModelAndView();
+        User user = new User();
+        model.addObject("user", user);
+        model.setViewName("/form/formcreateuser");
 
-    @RequestMapping(value = "/bendaharabem/data/create", method = RequestMethod.GET)
-    public  String createKel(Model model) {
-        model.addAttribute("kelas", new Kelas());
-        return "formCreateKelas";
+        return model;
     }
 
     @RequestMapping(value = "/bendaharabem/data/create", method = RequestMethod.POST)
-    public String saveKelas (Model model, Kelas kelas) {
-        model.addAttribute("kelas", kelasService.saveOrUpdateKel(kelas));
-        return "redirect:/bendaharabem/data";
-    }
+    public ModelAndView createUser(@Valid User user, BindingResult bindingResult) {
+        ModelAndView model = new ModelAndView();
+        User userExist = userService.findByUsername(user.getUsername());
 
-    @RequestMapping(value = "/bendaharabem/data/viewdetail/{kode}", method = RequestMethod.GET)
-    public String viewDetailKel(@PathVariable String kode, Model model) {
-        model.addAttribute("mahasiswa", kelasService.getKode(kode));
-        return "viewdetailKel";
-    }
+        if (userExist != null) {
+            bindingResult.rejectValue("username", "error.user", "This email already exist!");
+        }
 
-    @RequestMapping(value = "/bendaharabem/data/edit/{kode}", method = RequestMethod.GET)
-    public String editKel(@PathVariable String kode, Model model) {
-        model.addAttribute("kelas", kelasService.getKode(kode));
-        return "formEditKel";
-    }
+        if (bindingResult.hasErrors()) {
+            model.setViewName("/form/formcreateuser");
+        } else {
+            userService.save(user);
+            model.addObject("msg", "User has been registered successfully!");
+            model.addObject("user", new User());
+            model.setViewName("/form/formcreateuser");
+        }
 
-    @RequestMapping(value = "/bendaharabem/data/delete/{kode}", method = RequestMethod.GET)
-    public String deleteKelas(@PathVariable String kode) {
-        kelasService.deteleKelas(kode);
-        return "redirect:/bendaharabem/data";
+        return model;
     }
 }
