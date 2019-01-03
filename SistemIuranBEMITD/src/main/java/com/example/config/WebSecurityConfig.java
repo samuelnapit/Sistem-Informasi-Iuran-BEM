@@ -1,4 +1,4 @@
-package com.example.configurations;
+package com.example.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -30,21 +30,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
-        //.antMatchers("/dashboard/**").hasAuthority("ADMIN").anyRequest()
-        //.authenticated().and().csrf().disable()
         http.authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers("/login").permitAll()
                 .antMatchers("/bendaharabem/data/create").permitAll()
                 .antMatchers("/resources/**", "/css/**", "/styles/**", "/js/**", "/img/**").permitAll()
-                .antMatchers("/berita/post-comment-for-berita/{id}").authenticated()
-                .antMatchers("/dashboard").authenticated()
                 .antMatchers("/bendaharabem/index").hasAnyAuthority("BEM")
                 .antMatchers("/bendaharakelas/index").hasAnyAuthority("KELAS")
                 .and()
                 .formLogin().loginPage("/login")
-                //.failureUrl("/login?error=true")
-                .defaultSuccessUrl("/bendaharakelas/index")
+                .failureUrl("/login")
+                .defaultSuccessUrl("/bendaharabem/data/create")
                 .usernameParameter("username")
                 .passwordParameter("password")
                 .and()
@@ -58,7 +54,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         String USERS_QUERY = "select username, password, active from user where username=?";
-        String ROLES_QUERY = "select u.username, r.role from user u inner join user_role ur on (u.id = ur.user_id) inner join role r on (ur.role_id=r.role_id) where u.username=?";
+        String ROLES_QUERY = "select u.username, r.role from user u inner join user_role ur on (u.user_id = ur.user_id) inner join role r on (ur.role_id=r.role_id) where u.username=?";
         auth.jdbcAuthentication()
                 .usersByUsernameQuery(USERS_QUERY)
                 .authoritiesByUsernameQuery(ROLES_QUERY)

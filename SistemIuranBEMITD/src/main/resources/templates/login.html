@@ -18,19 +18,19 @@
             <br>
             <img th:src="@{download.png}" style="width: 100px"/>
             <hr>
-            <form class="needs-validation" novalidate th:action="@{/login}" method="post">
+            <form th:action="@{/login}" method="POST" class="form-signin">
                 <br>
                 <div class="form-row" style="text-align: left; color: gray;">
-                    <label for="validationCustomUsername">Username</label>
+                    <label>Username</label>
                     <br>
-                    <input type="text" id="validationCustomUsername" class="form-control col-md-12 col-md-offset-0" style="height: 33px" name="username" required>
+                    <input id="username" type="text" class="form-control col-md-12 col-md-offset-0" style="height: 33px" name="username" required>
                     <div class="invalid-feedback">Insert Username</div>
                 </div>
                 <br>
                 <div class="form-row" style="text-align: left; color: gray">
-                    <label for="validationCustomPassword">Password</label>
+                    <label>Password</label>
                     <br>
-                    <input type="password" id="validationCustomPassword" class="form-control col-md-12 col-md-offset-0" style="height: 33px" name="password" required>
+                    <input id="password" type="password" class="form-control col-md-12 col-md-offset-0" style="height: 33px" name="password" required>
                     <div class="invalid-feedback">Insert Password</div>
                     <div th:if="${param.error}">
                         <div class="form-group field-loginform-password required has-error">
@@ -40,7 +40,7 @@
                 </div>
                 <br>
                 <div>
-                    <input type="submit" name="login-submit" id="login-submit" class="form-control btn btn-info" value="Sign In" style="background: deepskyblue">
+                    <input type="submit" name="submit" id="login" class="form-control btn btn-info" value="Login" style="background: deepskyblue">
                 </div>
             </form>
         </div>

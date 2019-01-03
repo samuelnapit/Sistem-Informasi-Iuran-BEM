@@ -9,8 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class IndexController {
 
+    private final PengumumanService pengumumanService;
+
     @Autowired
-    PengumumanService pengumumanService;
+    public IndexController(PengumumanService pengumumanService) {
+        this.pengumumanService = pengumumanService;
+    }
 
     @RequestMapping("/bendaharakelas/index")
     public String indexKelas(Model model)

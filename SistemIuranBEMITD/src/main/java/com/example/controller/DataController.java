@@ -14,8 +14,15 @@ import javax.validation.Valid;
 @Controller
 public class DataController {
 
+    private final MahasiswaService mahasiswaService;
+
+    private final UserService userService;
+
     @Autowired
-    private MahasiswaService mahasiswaService;
+    public DataController(MahasiswaService mahasiswaService, UserService userService) {
+        this.mahasiswaService = mahasiswaService;
+        this.userService = userService;
+    }
 
     @RequestMapping("/bendaharakelas/data")
     public String MahasiswaList(Model model)
@@ -27,7 +34,7 @@ public class DataController {
     @RequestMapping(value = "/bendaharakelas/data/create", method = RequestMethod.GET)
     public  String create(Model model) {
         model.addAttribute("mahasiswa", new Mahasiswa());
-        return "formCreate";
+        return "form/formcreate";
     }
 
     @RequestMapping(value = "/bendaharakelas/data/create", method = RequestMethod.POST)
@@ -56,16 +63,13 @@ public class DataController {
 
 //===============================================================================================
 
-    //==================================================
-    @Autowired
-    private UserService userService;
-
     @RequestMapping("/bendaharabem/data")
     public String UserList(Model model)
     {
         model.addAttribute("user", userService.listUser());
         return "data/bendaharabem";
     }
+
     @RequestMapping(value = {"/bendaharabem/data/create"}, method = RequestMethod.GET)
     public ModelAndView signUp() {
         ModelAndView model = new ModelAndView();

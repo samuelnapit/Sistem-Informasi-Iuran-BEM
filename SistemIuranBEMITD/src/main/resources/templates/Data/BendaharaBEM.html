@@ -133,12 +133,12 @@
                             </button>
                             <ul class="dropdown-menu dropdown-menu-right" role="menu">
                                 <li>
-                                    <a th:href="${'/bendaharabem/data/viewdetail/' +users.username}" class="dropdown-item" title="View Detail">
+                                    <a th:href="${'/bendaharabem/data/detail/' +users.id}" class="dropdown-item" title="View Detail">
                                         <span class="fas fa-eye"> View Detail</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a th:href="${'/bendaharabem/data/delete/' +users.username}" class="dropdown-item" title="Delete">
+                                    <a th:href="${'/bendaharabem/data/delete/' +users.id}" class="dropdown-item" title="Delete">
                                         <span class="fas fa-trash"> Delete</span>
                                     </a>
                                 </li>
