@@ -10,7 +10,7 @@ public interface PaymentService {
 
     Payment saveOrUpdatePay(Payment payment);
 
-//    Payment getId(Integer id);
+    Payment getId(Integer id);
 //
 //    void deletePayment(Integer id);
 }

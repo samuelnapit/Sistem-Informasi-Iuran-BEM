@@ -42,37 +42,11 @@
 
     <!-- Navbar -->
     <ul class="navbar-nav ml-auto ml-md-8">
-        <li class="nav-item dropdown no-arrow mx-1">
-            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: deepskyblue">
-                <i class="fas fa-bell fa-fw"></i>
-                <span class="badge badge-danger"></span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-        </li>
-        <li class="nav-item dropdown no-arrow mx-1">
-            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: deepskyblue">
-                <i class="fas fa-envelope fa-fw"></i>
-                <span class="badge badge-danger"></span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-        </li>
         <li class="nav-item dropdown no-arrow">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: deepskyblue">
                 <i class="fas fa-user-circle fa-fw"></i>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">Settings</a>
-                <a class="dropdown-item" href="#">Activity Log</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
             </div>
@@ -100,18 +74,13 @@
                 <i class="fas fa-fw fa-database" style="color: deepskyblue"></i>
                 <span>Data Kelas</span></a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" th:href="@{/bendaharabem/pengumuman}" style="color: deepskyblue">
-                <i class="fas fa-fw fa-newspaper" style="color: deepskyblue"></i>
-                <span>Pengumuman</span></a>
-        </li>
     </ul>
 
     <!-- Breadcrumbs-->
     <div id="content-wrapper">
         <ol class="breadcrumb" style="background: #f5f5f5">
             <li class="breadcrumb-item" style="background: #f5f5f5">
-                <a th:href="@{/index}" style="color: deepskyblue" class="fas fa-home">  Home</a>
+                <a th:href="@{/bendaharabem/index}" style="color: deepskyblue" class="fas fa-home">  Home</a>
             </li>
             <li class="breadcrumb-item active">Payment</li>
         </ol>
@@ -120,36 +89,14 @@
             <table class="table table-stripped table-condensed table-bordered">
                 <thead>
                     <tr>
-                        <th>No</th>
                         <th>Periode Tagihan</th>
                         <th>Tagihan</th>
-                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr th:each="payments : ${payment}">
-                        <td th:text="${payments.id}"></td>
                         <td th:text="${payments.periode}"></td>
                         <td th:text="${payments.tagihan}"></td>
-                        <td>
-                            <div class="btn-group open">
-                                <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                                    <span class="fas fa-wrench">  Tools</span>
-                                </button>
-                                <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                                    <li>
-                                        <a th:href="${'/payment/viewdetail/' +payments.id}" class="dropdown-item" title="View Detail">
-                                            <span class="fas fa-eye"> View Detail</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a th:href="${'/payment/delete/' +payments.id}" class="dropdown-item" title="Delete">
-                                            <span class="fas fa-trash"> Delete</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </td>
                     </tr>
                 </tbody>
             </table>

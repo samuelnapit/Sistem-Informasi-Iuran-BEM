@@ -42,4 +42,16 @@ public class PengumumanController {
         model.addAttribute("pengumuman", pengumumanService.getId(id));
         return "pengumuman/bendaharakelas";
     }
+
+    @RequestMapping(value = "/bendaharabem/pengumuman/edit/{id}", method = RequestMethod.GET)
+    public String editPengumuman(@PathVariable Integer id, Model model) {
+        model.addAttribute("pengumuman", pengumumanService.getId(id));
+        return "formEditKelas";
+    }
+
+    @RequestMapping(value = "/bendaharakelas/pengumuman/delete/{id}", method = RequestMethod.GET)
+    public String deletePengumuman(@PathVariable Integer id) {
+        pengumumanService.deletePengumuman(id);
+        return "redirect:/data";
+    }
 }

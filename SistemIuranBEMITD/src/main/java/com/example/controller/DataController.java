@@ -25,8 +25,7 @@ public class DataController {
     }
 
     @RequestMapping("/bendaharakelas/data")
-    public String MahasiswaList(Model model)
-    {
+    public String MahasiswaList(Model model){
         model.addAttribute("mahasiswa", mahasiswaService.listMahasiswa());
         return "data/bendaharakelas";
     }
@@ -86,7 +85,7 @@ public class DataController {
         User userExist = userService.findByUsername(user.getUsername());
 
         if (userExist != null) {
-            bindingResult.rejectValue("username", "error.user", "This email already exist!");
+            bindingResult.rejectValue("username", "error.user", "This username already exist!");
         }
 
         if (bindingResult.hasErrors()) {
@@ -99,5 +98,11 @@ public class DataController {
         }
 
         return model;
+    }
+
+    @RequestMapping(value = "/bendaharabem/data/delete/{id}", method = RequestMethod.GET)
+    public String deleteUser(@PathVariable Integer id) {
+        userService.deleteUser(id);
+        return "redirect:/bendaharabem/data";
     }
 }

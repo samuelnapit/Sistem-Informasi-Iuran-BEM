@@ -27,6 +27,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         this.dataSource = dataSource;
     }
 
+    @Autowired
+    private SimpleSuccessHandler successHandler;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
@@ -39,8 +42,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/bendaharakelas/index").hasAnyAuthority("KELAS")
                 .and()
                 .formLogin().loginPage("/login")
-                .failureUrl("/login")
-                .defaultSuccessUrl("/bendaharabem/data/create")
+                .failureUrl("/login").successHandler(successHandler)
                 .usernameParameter("username")
                 .passwordParameter("password")
                 .and()

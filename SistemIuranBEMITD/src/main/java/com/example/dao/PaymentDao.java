@@ -34,13 +34,12 @@ public class PaymentDao implements PaymentService {
         return saved;
     }
 
-//    @Override
-//    public Payment getId(Integer id){
-//
-//        EntityManager em = emf.createEntityManager();
-//        return em.find(Payment.class, id);
-//    }
-//
+    @Override
+    public Payment getId(Integer id){
+        EntityManager em = emf.createEntityManager();
+        return em.find(Payment.class, id);
+    }
+
 //    @Override
 //    public void deletePayment(Integer id) {
 //

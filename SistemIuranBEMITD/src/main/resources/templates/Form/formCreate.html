@@ -84,25 +84,20 @@
     <!-- Sidebar -->
     <ul class="sidebar navbar-nav" style="background: white">
         <li class="nav-item active">
-            <a class="nav-link" th:href="@{/index}" style="color: deepskyblue">
+            <a class="nav-link" th:href="@{/bendaharakelas/index}" style="color: deepskyblue">
                 <i class="fas fa-fw fa-tachometer-alt" style="color: deepskyblue"></i>
                 <span>Dashboard</span>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" th:href="@{/payment}" style="color: deepskyblue">
+            <a class="nav-link" th:href="@{/bendaharakelas/payment}" style="color: deepskyblue">
                 <i class="fas fa-fw fa-money-bill" style="color: deepskyblue"></i>
                 <span>Payment</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" th:href="@{/data}" style="color: deepskyblue">
+            <a class="nav-link" th:href="@{/bendaharakels/data}" style="color: deepskyblue">
                 <i class="fas fa-fw fa-database" style="color: deepskyblue"></i>
                 <span>Data Mahasiswa</span></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" th:href="@{/pengumuman}" style="color: deepskyblue">
-                <i class="fas fa-fw fa-newspaper" style="color: deepskyblue"></i>
-                <span>Pengumuman</span></a>
         </li>
     </ul>
 
@@ -110,10 +105,10 @@
     <div id="content-wrapper">
         <ol class="breadcrumb" style="background: #f5f5f5">
             <li class="breadcrumb-item" style="background: #f5f5f5">
-                <a th:href="@{/index}" style="color: deepskyblue" class="fas fa-home">   Home</a>
+                <a th:href="@{/bendaharakelas/index}" style="color: deepskyblue" class="fas fa-home">   Home</a>
             </li>
             <li class="breadcrumb-item">
-                <a th:href="@{/data}" style="color:deepskyblue">Data</a>
+                <a th:href="@{/bendaharakelas/data}" style="color:deepskyblue">Data</a>
             </li>
             <li class="breadcrumb-item active">Create</li>
         </ol>

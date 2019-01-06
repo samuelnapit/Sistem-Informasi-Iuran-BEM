@@ -59,20 +59,20 @@
     <!-- Sidebar -->
     <ul class="sidebar navbar-nav" style="background: white">
         <li class="nav-item active">
-            <a class="nav-link" th:href="@{/bendaharabem/index}" style="color: deepskyblue">
+            <a class="nav-link" th:href="@{/bendaharakelas/index}" style="color: deepskyblue">
                 <i class="fas fa-fw fa-tachometer-alt" style="color: deepskyblue"></i>
                 <span>Dashboard</span>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" th:href="@{/bendaharabem/payment}" style="color: deepskyblue">
+            <a class="nav-link" th:href="@{/bendaharakelas/payment}" style="color: deepskyblue">
                 <i class="fas fa-fw fa-money-bill" style="color: deepskyblue"></i>
                 <span>Payment</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" th:href="@{/bendaharabem/data}" style="color: deepskyblue">
+            <a class="nav-link" th:href="@{/bendaharakelas/data}" style="color: deepskyblue">
                 <i class="fas fa-fw fa-database" style="color: deepskyblue"></i>
-                <span>Data Kelas</span></a>
+                <span>Data Mahasiswa</span></a>
         </li>
     </ul>
 
@@ -80,25 +80,26 @@
     <div id="content-wrapper">
         <ol class="breadcrumb" style="background: #f5f5f5">
             <li class="breadcrumb-item" style="background: #f5f5f5">
-                <a th:href="@{/index}" style="color: deepskyblue" class="fas fa-home">  Home</a>
+                <a th:href="@{/bendaharakelas/index}" style="color: deepskyblue" class="fas fa-home">  Home</a>
             </li>
-            <li class="breadcrumb-item active">Data Kelas</li>
+            <li class="breadcrumb-item active">Payment</li>
         </ol>
         <hr>
         <div class="container-fluid">
             <table class="table table-stripped table-condensed table-bordered">
+                <thead>
                 <tr>
-                    <th>Kode Kelas</th>
-                    <th>Fakultas</th>
+                    <th>Periode Tagihan</th>
+                    <th>Tagihan</th>
                 </tr>
-                <tr th:each="users : ${user}" th:if="${users.id != 1}">
-                    <td th:text="${users.username}"></td>
-                    <td th:text="${users.fakultas}"></td>
+                </thead>
+                <tbody>
+                <tr th:each="payments : ${payment}">
+                    <td th:text="${payments.periode}"></td>
+                    <td th:text="${payments.tagihan}"></td>
                 </tr>
+                </tbody>
             </table>
-            <div>
-                <a class="btn btn-info" href="/bendaharabem/data/create" style="background: deepskyblue">Tambah Kelas Baru</a>
-            </div>
         </div>
 
         <footer class="sticky-footer" style="background: #f5f5f5">

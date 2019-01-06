@@ -12,7 +12,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_id")
-    private int id;
+    private Integer id;
 
     @NotEmpty(message = "*Please provide your name")
     private String username;
@@ -23,7 +23,7 @@ public class User {
 
     private String fakultas;
 
-    private int angkatan;
+    private Integer angkatan;
 
     private Long iuran;
 
@@ -35,11 +35,11 @@ public class User {
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -67,11 +67,11 @@ public class User {
         this.fakultas = fakultas;
     }
 
-    public int getAngkatan() {
+    public Integer getAngkatan() {
         return angkatan;
     }
 
-    public void setAngkatan(int angkatan) {
+    public void setAngkatan(Integer angkatan) {
         this.angkatan = angkatan;
     }
 

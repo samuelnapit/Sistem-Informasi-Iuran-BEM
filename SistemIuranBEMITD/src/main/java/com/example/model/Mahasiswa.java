@@ -15,7 +15,7 @@ public class Mahasiswa {
 
 	private String status;
 
-	private Long id_kelas;
+	private String id_kelas;
 
 	public String getNim() { return nim; }
 
@@ -45,5 +45,13 @@ public class Mahasiswa {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public String getId_kelas() {
+		return id_kelas;
+	}
+
+	public void setId_kelas(String id_kelas) {
+		this.id_kelas = id_kelas;
 	}
 }
